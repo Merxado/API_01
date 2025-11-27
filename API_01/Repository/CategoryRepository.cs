@@ -2,6 +2,7 @@
 using API_01.DAL.Models;
 using API_01.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
+using System.Runtime.InteropServices;
 
 namespace API_01.Repository
 {
@@ -20,21 +21,28 @@ namespace API_01.Repository
 
         public async Task<bool> CategoryExistByNameAsync(string name)
         {
-            var exist = await _context.Categories.AsNoTracking().AnyAsync(c => c.Name == name);
+            return await _context.Categories.AsNoTracking().AnyAsync(c => c.Name == name);
         }
 
         public async Task<bool> CreateCategoryAsync(Category category)
         {
             category.CreatedDate = DateTime.UtcNow;
 
-            var addedCategory = await _context.Categories.AddAsync(category);
+            await _context.Categories.AddAsync(category);
 
-            return await _context.SaveChangesAsync() >= 0 ? true : false;      
+            return await SaveAsync();
         }
 
         public async Task<bool> DeleteCategoryAsync(int id)
         {
-            throw new NotImplementedException();
+            var category = await GetCategoryAsync(id);
+
+            if (category == null) { 
+                return false;
+            }
+
+            _context.Categories.Remove(category);
+            return await SaveAsync();
         }
 
         public async Task<ICollection<Category>> GetCategoriesAsync()
@@ -50,7 +58,16 @@ namespace API_01.Repository
 
         public async Task<bool> UpdateCategoryAsync(Category category)
         {
-            throw new NotImplementedException();
+            category.ModifiedDate = DateTime.UtcNow;
+
+            _context.Categories.Update(category);
+
+            return await SaveAsync();
+        }
+
+        private async Task<bool> SaveAsync() 
+        { 
+            return await _context.SaveChangesAsync() >= 0 ? true: false;
         }
     }
 }
