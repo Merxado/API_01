@@ -1,5 +1,5 @@
 ﻿using API_01.DAL.Models;
-using API_01.DAL.Models.Dtos;
+using API_01.DAL.Models.Dtos.Category;
 using API_01.Repository.IRepository;
 using API_01.Services.IServices;
 using AutoMapper;
@@ -40,17 +40,20 @@ namespace API_01.Services
         {
             var categories = _categoryRepository.GetCategoriesAsync();
 
-            var categoriesDto = _mapper.Map<ICollection<CategoryDto>>(categories);
-
-            return categoriesDto;
+            return _mapper.Map<ICollection<CategoryDto>>(categories);
         }
 
-        public Task<Category> GetCategoryAsync(int id)
+        public Task<CategoryDto> GetCategoryAsync(int id)
         {
             throw new NotImplementedException();
         }
 
         public Task<bool> UpdateCategoryAsync(Category category)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<CategoryDto> ICategoryService.GetCategoryAsync(int id)
         {
             throw new NotImplementedException();
         }

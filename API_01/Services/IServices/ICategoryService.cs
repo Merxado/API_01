@@ -1,5 +1,5 @@
 ﻿using API_01.DAL.Models;
-using API_01.DAL.Models.Dtos;
+using API_01.DAL.Models.Dtos.Category;
 
 namespace API_01.Services.IServices
 {
