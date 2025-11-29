@@ -8,8 +8,8 @@ namespace API_01.Services.IServices
     {
         Task<ICollection<CategoryDto>> GetCategoriesAsync();
         Task<CategoryDto> GetCategoryAsync(int id);
-        Task<CategoryDto> CreateCategoryAsync(CategoryCreateDto categoryDto);
-        Task<CategoryDto> UpdateCategoryAsync(CategoryCreateDto dto, int id);
+        Task<CategoryDto> CreateCategoryAsync(CategoryCreateUpdateDto categoryDto);
+        Task<CategoryDto> UpdateCategoryAsync(CategoryCreateUpdateDto dto, int id);
         Task<bool> CategoryExistByIdAsync(int id);
         Task<bool> CategoryExistByNameAsync(string name);
         Task<bool> DeleteCategoryAsync(int id);
