@@ -27,7 +27,7 @@ namespace API_01.Services
             throw new NotImplementedException();
         }
 
-        public async Task<CategoryDto> CreateCategoryAsync(CategoryCreateUpdateDto categoryCreateDto)
+        public async Task<CategoryDto> CreateCategoryAsync(CategoryCreateDto categoryCreateDto)
         {
             var categoryExist = await _categoryRepository.CategoryExistByNameAsync(categoryCreateDto.Name);
 
@@ -60,7 +60,7 @@ namespace API_01.Services
             return _mapper.Map<ICollection<CategoryDto>>(categories);
         }
 
-        public Task<CategoryDto> UpdateCategoryAsync(int id, Category categoryDto)
+        public async Task<CategoryDto> UpdateCategoryAsync(CategoryCreateDto dto, int id)
         {
             throw new NotImplementedException();
         }
@@ -70,5 +70,6 @@ namespace API_01.Services
 
             return _mapper.Map<CategoryDto>(category);
         }
+
     }
 }

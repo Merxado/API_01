@@ -2,7 +2,7 @@
 
 namespace API_01.DAL.Models.Dtos.Category
 {
-    public class CategoryCreateUpdateDto
+    public class CategoryCreateDto
     {
 
         [Required(ErrorMessage = "El nombre de la categoria es obligatorio.")]
