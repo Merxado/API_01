@@ -62,6 +62,7 @@ namespace API_01.Services
             {
                 throw new Exception("Ocurrió un error al eliminar la categoría");
             }
+
             return categoryDeleted;
         }
 
@@ -101,6 +102,11 @@ namespace API_01.Services
         public async Task<CategoryDto> GetCategoryAsync(int id)
         {
             var category = await _categoryRepository.GetCategoryAsync(id);
+
+            if (category == null)
+            {
+                throw new InvalidOperationException($"No se encontró la categoria con ID: '{id}'");
+            }
 
             return _mapper.Map<CategoryDto>(category);
         }
