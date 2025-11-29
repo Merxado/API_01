@@ -24,6 +24,11 @@ namespace API_01.Repository
             return await _context.Categories.AsNoTracking().AnyAsync(c => c.Name == name);
         }
 
+        public Task CategoryExistByNameAsync(int name)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<bool> CreateCategoryAsync(Category category)
         {
             category.CreatedDate = DateTime.UtcNow;
@@ -63,6 +68,11 @@ namespace API_01.Repository
             _context.Categories.Update(category);
 
             return await SaveAsync();
+        }
+
+        Task<bool> ICategoryRepository.CategoryExistByNameAsync(int name)
+        {
+            throw new NotImplementedException();
         }
 
         private async Task<bool> SaveAsync() 

@@ -11,6 +11,6 @@ namespace API_01.Repository.IRepository
         Task<bool> CreateCategoryAsync(Category category);
         Task<bool> UpdateCategoryAsync(Category category);
         Task<bool> DeleteCategoryAsync(int id);
-
+        Task<bool> CategoryExistByNameAsync(int name);
     }
 }

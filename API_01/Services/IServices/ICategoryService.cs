@@ -1,4 +1,5 @@
 ﻿using API_01.DAL.Models;
+using API_01.DAL.Models.Dtos;
 using API_01.DAL.Models.Dtos.Category;
 
 namespace API_01.Services.IServices
@@ -7,10 +8,10 @@ namespace API_01.Services.IServices
     {
         Task<ICollection<CategoryDto>> GetCategoriesAsync();
         Task<CategoryDto> GetCategoryAsync(int id);
+        Task<CategoryDto> CreateCategoryAsync(CategoryCreateUpdateDto categoryDto);
+        Task<CategoryDto> UpdateCategoryAsync(int id, Category categoryDto);
         Task<bool> CategoryExistByIdAsync(int id);
         Task<bool> CategoryExistByNameAsync(string name);
-        Task<bool> CreateCategoryAsync(Category category);
-        Task<bool> UpdateCategoryAsync(Category category);
         Task<bool> DeleteCategoryAsync(int id);
     }
 }
