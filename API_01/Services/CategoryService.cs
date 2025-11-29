@@ -50,7 +50,19 @@ namespace API_01.Services
 
         public async Task<bool> DeleteCategoryAsync(int id)
         {
-            throw new NotImplementedException();
+            var categoryExist = await _categoryRepository.GetCategoryAsync(id);
+
+            if (categoryExist == null)
+            {
+                throw new InvalidOperationException($"No se encontró la categoria con ID: '{id}'");
+            }
+            var categoryDeleted = await _categoryRepository.DeleteCategoryAsync(id);
+            
+            if (!categoryDeleted)
+            {
+                throw new Exception("Ocurrió un error al eliminar la categoría");
+            }
+            return categoryDeleted;
         }
 
         public async Task<ICollection<CategoryDto>> GetCategoriesAsync()
