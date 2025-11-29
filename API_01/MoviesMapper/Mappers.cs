@@ -1,6 +1,7 @@
 ﻿using API_01.DAL.Models;
 using API_01.DAL.Models.Dtos;
 using API_01.DAL.Models.Dtos.Category;
+using API_01.DAL.Models.Dtos.Movie;
 using AutoMapper;
 
 namespace API_01.MoviesMapper
@@ -11,6 +12,9 @@ namespace API_01.MoviesMapper
         {
             CreateMap<Category, CategoryDto>().ReverseMap();
             CreateMap<Category, CategoryCreateUpdateDto>().ReverseMap();
+
+            CreateMap<Movie, MovieDto>().ReverseMap();
+            CreateMap<MovieCreateUpdateDto, Movie>();
         }
     }
 }
